@@ -1,0 +1,31 @@
+<div id="invoiceIdDiv">New Invoice</div>
+<div id="formDiv">
+    <div style="color: #7C5DFA;">Bill From</div>
+    <label class="clsForLabel" id="StreedAddressLabel" for="StreetAddress">Street Address <input name="StreetAddress" id="StreetAddress" type="text" /> </label>
+<div style="width: 100%; display: flex; flex-direction: row; justify-content: space-evenly; align-items: center;">
+    <label class="clsForLabel" id="CityLabel" for="City"> City <input id="City" name="City" type="text" /> </label>
+    <label class="clsForLabel" id="PostCodeLabel" for="PostCode"> Post Code <input id="PostCode" name="PostCode" type="text" /> </label>
+    <label class="clsForLabel" id="CountryLabel" for="Country"> Country <input id="Country" name="Country" type="text" /> </label>
+</div>
+<div style="color: #7C5DFA; margin-top: 50px;">Bill To</div>
+<label class="clsForLabel" id="ClientNameLabel" for="ClientName">Client’s Name <input name="ClientName" id="ClientName" type="text" /> </label>
+<label class="clsForLabel" id="ClientEmailLabel" for="ClientEmail">Client’s Email <input name="ClientEmail" id="ClientEmail" type="text" /> </label>
+<label class="clsForLabel" id="ClientStreedAddressLabel" for="ClientStreetAddress">Street Address <input name="ClientStreetAddress" id="ClientStreetAddress" type="text" /> </label>
+<div style="width: 100%; display: flex; flex-direction: row; justify-content: space-evenly; align-items: center;">
+    <label class="clsForLabel" id="ClientCityLabel" for="ClientCity"> City <input id="ClientCity" name="ClientCity" type="text" /> </label>
+    <label class="clsForLabel" id="ClientPostCodeLabel" for="ClientPostCode"> Post Code <input id="ClientPostCode" name="ClientPostCode" type="text" /> </label>
+    <label class="clsForLabel" id="ClientCountryLabel" for="ClientCountry"> Country <input id="ClientCountry" name="ClientCountry" type="text" /> </label>
+</div>
+<div style="width: 100%; display: flex; flex-direction: row; justify-content: flex-start; align-items: center;">
+    <label class="clsForLabel" id="InvoiceDateLabel" for="InvoiceDate"> Invoice Date <input id="InvoiceDate" name="InvoiceDate" type="date" /> </label>
+    <label class="clsForLabel" id="PaymentTermsLabel" for="PaymentTerms"> Payment Terms <input id="PaymentTerms" name="PaymentTerms" type="date" /> </label>
+</div>
+<label class="clsForLabel" id="ProjectDescriptionLabel" for="ProjectDescription">Project Description<input name="ProjectDescription" id="ProjectDescription" type="text" /></label>
+<div style="color: #777F98; margin-top: 50px; font-size: 25px;">Item List</div>
+<div id="itemTitle"><div id="item-name">Item Name</div><div id="item-quantity">QTY.</div><div id="item-quantity-price">Price</div> <div id="item-total-price">Total</div></div>
+<div id="itemListDiv">
+<div class="itemDiv"> <input type="text" name="ItemName" class="clsForItemName"><input type="number" value="1" name="ItemQTY" class="clsForItemQTY" oninput="changeItemTotalPrice(this)"><input type="number" value="1" name="ItemPrice" oninput="changeItemTotalPrice(this)" class="clsForItemPrice"><div class="clsForItemTotalPrice" >1.00</div><button class="clsForDeleteItemButton" onclick="deleteItem(this)"><svg width="13" height="16" xmlns="http://www.w3.org/2000/svg"><path d="M11.583 3.556v10.666c0 .982-.795 1.778-1.777 1.778H2.694a1.777 1.777 0 01-1.777-1.778V3.556h10.666zM8.473 0l.888.889h3.111v1.778H.028V.889h3.11L4.029 0h4.444z" fill="#888EB0" fill-rule="nonzero"/></svg></button></div>
+</div>
+<button onclick="addNewItem()" id="addNewItemButton">+ Add New Item</button>
+</div>
+<div id="saveDiv"> <button class="clsForInvoiceDiv" onclick="cancelChanges()"  id="discardButton">Discard</button> <div id="messageDiv"> <div id="messageBox"></div><button onclick="closeMessageBox()" id="closeButton">Close</button> </div> <button class="clsForInvoiceDiv" onclick="createNewInvoice('draft')" id="draftButton">Save as Draft</button><button class="clsForInvoiceDiv" id="saveButton" onclick="createNewInvoice('pending')">Save & Send</button> </div>

@@ -1,0 +1,526 @@
+@import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@500&display=swap');    
+*{
+    margin: 0px;
+    padding: 0px;
+    font-family: 'League Spartan', sans-serif;
+    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+    scrollbar-width: none;  /* Firefox */
+}
+*::-webkit-scrollbar { 
+    display: none;  /* Safari and Chrome */
+}
+html, body{
+    width: 100%;
+    height: 100%;
+    background-color: #F8F8FB;
+}
+h1{
+    padding-bottom: 10px;
+    font-size:40px;
+    color : #0C0E16;
+}
+h3{
+    font-weight: 400;
+    color: #7E88C3;
+}
+#whole-div{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+#nav-div{
+    position: relative;
+    width:6%;
+    height:100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #373B53;
+    border-top-right-radius: 40px;
+    border-bottom-right-radius: 40px;
+    overflow: hidden;
+    z-index: 2;
+}
+#newInvoiceDiv{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: #000000ab;
+    z-index: 1;
+    transform: translateX(-1850px);
+    transition: 1s;
+}
+#invoiceDivChild{
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    width: 40%;
+    height: 95.3%;
+    background-color: #FFFFFF;
+    border-radius: 40px;
+    margin-left: 50px;
+    padding: 50px 0px 0px 0px ;
+}
+#invoiceIdDiv{
+    height: 10%;
+    width: 85%;
+    font-size: 35px;
+    padding-left: 115px;
+
+}
+#formDiv{
+    height: 85%;
+    width: 80%;
+    padding-left: 85px;
+    overflow: scroll;
+    padding-bottom: 20px;
+}
+.clsForLabel{
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: flex-start;
+    color: #7E88C3;
+}
+input[type="text"]{
+    padding: 15px 15px 15px 15px;
+    background-color: transparent;
+    border: 1px solid #DFE3FA ;
+    font-size: 18px;
+    border-radius: 3px;
+}
+input[type="number"]{
+    padding: 15px 15px 15px 15px;
+    background-color: transparent;
+    border: 1px solid #DFE3FA ;
+    font-size: 18px;
+    border-radius: 3px;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+#StreedAddressLabel{
+    width: 100%;
+    margin-top: 30px;
+}
+#StreetAddress{
+    width: 94%;
+}
+#City{
+    width: 80%;
+}
+#PostCode{
+    width: 80%;
+}
+#Country{
+    width: 80%;
+}
+#ClientName{
+    width: 94%;  
+}
+#ClientEmail{
+    width: 94%;  
+}
+#ClientStreetAddress{
+    width: 94%;
+}
+#ClientCity{
+    width: 80%;
+}
+#ClientPostCode{
+    width: 80%;
+}
+#ClientCountry{
+    width: 80%;
+}
+#InvoiceDate{
+    width: 180%;
+    height: 45%;
+    border: 1px solid #DFE3FA;
+    border-radius: 3px;
+    padding: 15px 15px 15px 15px;
+    background-color: transparent;
+}
+#PaymentTermsLabel{
+    margin-left: 180px;
+}
+#PaymentTerms{
+    width: 170%;
+    height: 45%;
+    border: 1px solid #DFE3FA;
+    border-radius: 3px;
+    padding: 15px 15px 15px 15px;
+    background-color: transparent;  
+}
+#ProjectDescription{
+    width: 94%;
+}
+#saveDiv{
+    position: relative;
+    height: 10%;
+    width: 100%;
+    font-size: 30px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-end;
+    padding-left: 270px;
+    padding-bottom: 40px;
+    box-shadow: 0px -20px 25px 25px rgba(108, 108, 108, 0.1);
+}
+#itemTitle{
+    height: 5%;
+    width: 100%;
+    padding-top: 30px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    color: #7E88C3;
+}
+.itemDiv{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    margin-top: 20px;
+}
+#item-name{
+    width: 40%;
+    align-items: flex-start;
+    text-align: left;
+}    
+#item-quantity{
+    width: 15%;
+}
+#item-quantity-price{
+    width: 20%;
+}
+#item-total-price{
+    width: 15%;
+}
+.clsForItemName{
+    width: 36%;
+}
+.clsForItemQTY{
+    width: 10%;
+    margin-left: 20px;
+}
+.clsForItemPrice{
+    width: 15%;
+    margin-left: 30px;
+}
+.clsForItemTotalPrice{
+    margin-left: 40px;
+}
+.clsForDeleteItemButton{
+    background-color: transparent;
+    border: none;
+    margin-left: 40px;
+}
+#addNewItemButton{
+    width: 95%;
+    height: 7%;
+    background-color: #F9FAFE;
+    color: #7E88C3;
+    border: none;
+    border-radius: 50px;
+    margin-top: 20px;
+    font-size: 20px;
+}
+#addNewItemButton:hover{
+    cursor: pointer;
+    background-color: #DFE3FA;
+    color: #7E88C3;
+}
+.clsForInvoiceDiv{
+    padding:  20px 20px 20px 20px;
+    border-radius: 30px;
+    border: none;
+    font-size: 18px;
+}
+#discardButton{
+    background-color: #F9FAFE;
+    color: #7E88C3;
+}
+#discardButton:hover{
+    cursor: pointer;
+    background-color: #DFE3FA;
+    color: #7E88C3;
+}
+#messageDiv{
+    display: none;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    position: absolute;
+    width: 500px;
+    height: 280px;
+    background-color: white;
+    border-radius: 10px;
+    z-index: 1;
+    padding-bottom: 30px;
+    box-shadow: 0px 15px 20px 10px rgb(152 152 152 / 40%);
+    transform: translate(30px , -400px);
+}
+#messageBox{
+    width: 90%;
+    height: 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 20px;
+    color: #0C0E16;
+}
+#closeButton{
+    width: 35%;
+    height: 20%;
+    background-color: #EC5757;
+    border: none;
+    border-radius: 50px;
+    color: white;
+    font-size: 20px;
+}
+#draftButton{
+    background-color: #373B53;
+    color: #979797;
+    margin-left: 180px;
+}
+#draftButton:hover{
+    background-color: #0C0E16;
+    color: #888EB0;
+    margin-left: 180px;
+    cursor: pointer;
+}
+#saveButton{
+    background-color: #7C5DFA;
+    color: #FFFFFF;
+    margin-left: 15px;
+}
+#saveButton:hover{
+    cursor: pointer;
+    background-color: #9277FF;
+    color: white;
+}
+#logoImg{
+    height: 10%;
+    width: 100%;
+}
+#opt-div{
+    height: 90%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    padding-bottom: 40px;
+}
+#theme-div{
+    width: 100%;
+    height: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1px solid #494E6E;
+}
+#themeImg{
+    width: 100px;
+    height: 80px;
+}
+#themeImg:hover{
+    cursor: pointer;
+}
+#avatarImg{
+    height: 60px;
+    width: 60px;
+    border-radius: 50px;
+    margin-top: 20px;
+}
+#main-div{
+    width:94%;
+    height:100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #F8F8FB;
+}
+#head-div{
+    width: 60%;
+    height: 15%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+#head-div1{
+    width: 60%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+#head-div2{
+    width: 20%;
+    height: 100%;
+    /* display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center; */
+    margin-top: 150px;
+    font-size: 17px;
+}
+#head-div2:hover{
+cursor: pointer;
+}
+#filterButton{
+    background-color: transparent;
+    border: 0px;
+}
+#sort-Div{
+    display: none;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    padding-top: 10px;
+    margin-bottom: 10px;
+    height: 150px;
+    width: 230px;
+    background-color: #FFFFFF;
+    transform: translate(-50px,30px);
+    border-radius: 10px;
+    box-shadow: 0px 5px 10px 5px rgba(146, 119, 255, 0.17);
+}
+.sortOption{
+    width: 70px;
+    color: #1E2139;
+    background-color: transparent;
+    border: none;
+    font-size: 18px;
+    font-weight: 500;
+    text-align: left;
+    padding-left: 10px;
+}
+.sortOption:hover{
+    font-weight: 800;
+}
+#head-div3{
+    width: 20%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+#newInvoiceButton{
+    width: 100%;
+    height: 45%;
+    background-color: #7C5DFA;
+    color: white;
+    border: none;
+    border-radius: 50px;
+    font-size: 18px;
+    font-weight: 600;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    align-items:center ;
+}
+#newInvoiceButton:hover{
+    background-color: #9277FF;
+    cursor: pointer;
+}
+#plusButton{
+    width: 10%;
+    height: 30%;
+    background-color: white;
+    border-radius: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    color: #7C5DFA;
+}
+#invoice-div{
+    width: 60%;
+    height: 85%;
+    overflow: scroll;
+}
+.mainInvoiceDiv{
+    height: 12%;
+    width:  99.5%;
+    background-color: #FFFFFF;
+    margin-top: 25px;
+    border-radius: 15px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    box-shadow: -7px 11px 15px -5px rgb(146 119 255 / 17%);
+}
+.mainInvoiceDiv:hover{
+    border: 1px solid #7C5DFA;
+}
+customerID{
+    color: #0C0E16;
+    font-size: 20px;
+    font-weight: 600;
+}
+dueDate,customerName{
+    color: #7E88C3;
+    font-size: 18px;
+    font-weight: 400;
+    align-items: center;
+    text-align: left;
+}
+#customerPrice{
+    color: #0C0E16;
+    font-size: 30px;
+    font-weight: 600;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+.statusPaid{
+    padding: 15px 25px 10px 20px;
+    background-color: #e6f8f2;
+    font-size: 25px;
+    color: #33D69F;
+    border-radius: 8px ;
+}
+.statusPending{
+    padding: 15px 25px 10px 20px;
+    background-color: #fff7f0;
+    font-size: 25px;
+    color: #FF8F00;
+    border-radius: 8px ;
+}
+.statusDraft{
+    padding: 15px 25px 10px 20px;
+    background-color: #F3F3F5;
+    font-size: 25px;
+    color: #373B53;
+    border-radius: 8px ; 
+}
+#view-Detail{
+    width: 50px;
+    height: 50px;
+    background-color: transparent;
+    border: none;
+    font-size: 30px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    
+}

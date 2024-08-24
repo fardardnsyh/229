@@ -1,0 +1,55 @@
+<link rel="stylesheet" href="<%=Img.cssSheet%>">
+<script src="https://kit.fontawesome.com/ea1e76dc8a.js" crossorigin="anonymous"></script>
+<link rel="icon" type="image/x-icon" href="<%=Img.logoImg%>">    
+<title>Invoice App</title>
+<div id="whole-Div">
+    <div id="nav-div">
+        <img id="logoImg" src="<%=Img.logoImg%>" onclick="reloadPage()" alt="">
+        <div id="opt-div"> <div id="theme-div"><img id="themeImg" onclick="changeTheme(this)" src="<%=Img.moonImg%>" alt=""> </div> <div id="profile-div"> <img id="avatarImg" src="<%=Img.avatarImg%>" alt=""> </div> </div>
+    </div>
+    <div id="newInvoiceDiv"> <div id="invoiceDivChild"> <%- include("./partials/NewInvoiceForm") %> </div></div>
+    <div id="main-div">
+        <div id="head-div">
+            <div id="head-div1"><h1> Invoices </h1><h3>There are <%= Img.JsonData.length%> total invoices</h3> </div>
+            <div id="head-div2" onclick="openSortOption()">Filter by status &nbsp;<button id="filterButton"><i class="fa-solid fa-angle-down"></i></button>
+            <div id="sort-Div">
+            <button class="sortOption" onclick="sortInvoice(this)">All</button>    
+            <button class="sortOption" onclick="sortInvoice(this)">Draft</button>
+            <button class="sortOption" onclick="sortInvoice(this)">Paid</button>
+            <button class="sortOption" onclick="sortInvoice(this)">Pending</button>
+            </div>
+        </div>
+            <div id="head-div3"> <button id="newInvoiceButton" onclick="CreateNewInvoice()" > <div id="plusButton"><i class="fa-solid fa-plus"></i></div> &nbsp;  &nbsp; New Invoice </button> </div>
+        </div>
+
+
+
+        <div id="invoice-div" onload="checkBackground('<%= Img.bgImg%>')"><% for(let i = Img.JsonData.length-1 ; i>=0 ; i--) { %> <div class="mainInvoiceDiv" onclick="invoiceInfo(this)">
+                    <h3> # <customerID> <%= Img.JsonData[i].id  %></customerID></h3>
+                    <%  let date = new Date(Img.JsonData[i].paymentDue);
+                    let newDateString = new Intl.DateTimeFormat("en-US", {
+                      day: "numeric",
+                      month: "short",
+                      year: "numeric"
+                    }).format(date); %>
+                    <dueDate>Due <%= newDateString %> </dueDate>
+                    <customerName><%= Img.JsonData[i].clientName%></customerName>
+                    <div id="customerPrice"> £ <%= Img.JsonData[i].total%> </div>
+                    <% if(Img.JsonData[i].status=="paid") { %> 
+                    <div class="status statusPaid">• Paid</div>    
+                    <% } %>
+                    <% if(Img.JsonData[i].status=="pending") { %> 
+                        <div class="status statusPending">• Pending</div>    
+                    <% } %>
+                    <% if(Img.JsonData[i].status=="draft") { %> 
+                        <div class="status statusDraft">• Draft</div>    
+                    <% } %>    
+                    <button id="view-Detail"> <img src=" <%= Img.rightArrowImg %> "  /></button>
+                </div><% } %>
+        </div>
+    </div>
+</div>
+
+<script src="<%=Img.jsScript%>"></script>
+
+

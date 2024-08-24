@@ -1,0 +1,121 @@
+<link rel="stylesheet" href="<%=obj.css %>">
+<script src="https://kit.fontawesome.com/ea1e76dc8a.js" crossorigin="anonymous"></script>
+<link rel="icon" type="image/x-icon" href="<%=obj.logoImg%>">
+<title>Invoice App</title>
+<div id="whole-div">
+    <div id="nav-div">
+        <img id="logoImg" onclick="reloadPage()" src="<%=obj.logoImg%>" alt="">
+        <div id="opt-div"> <div id="theme-div"> </div> <div id="profile-div"> <img id="avatarImg" src="<%=obj.avatarImg%>" alt=""> </div> </div>
+    </div>
+    <div id="removeInvoiceBoxDiv"><div id="messageDiv"> <h1>Confirm Deletion</h1><h6></h6> <div id="removeOptDiv"> <button id="cancelButton" onclick="removeInvoice('no')">Cancel</button><button id="deleteButton" onclick="removeInvoice('yes')">Delete</button> </div> </div> </div>
+    <% for(let i = 0; i < obj.JsonData.length; i++) { %>
+        <% if(obj.JsonData[i].id == obj.res.query.id) { %> 
+            <div id="formdivElem"><div id="formDivChild">
+                <div id="invoiceIdDiv"> Edit <hashtag style="color: #777F98; margin-left: 10px;">#</hashtag><div id="idDiv" style="width: 200px;"><%= obj.JsonData[i].id%></div></div>
+                <div id="formDiv">
+                    <div style="color: #7C5DFA;">Bill From</div>
+                    <label class="clsForLabel" id="StreedAddressLabel" for="StreetAddress">Street Address <input name="StreetAddress" id="StreetAddress" type="text" value="<%= obj.JsonData[i].senderAddress.street%>" /> </label>
+                <div style="width: 100%; display: flex; flex-direction: row; justify-content: space-evenly; align-items: center;">
+                    <label class="clsForLabel" id="CityLabel" for="City"> City <input id="City" name="City" value="<%= obj.JsonData[i].senderAddress.city%>" type="text" /> </label>
+                    <label class="clsForLabel" id="PostCodeLabel" for="PostCode"> Post Code <input id="PostCode" name="PostCode" value="<%= obj.JsonData[i].senderAddress.postCode%>" type="text" /> </label>
+                    <label class="clsForLabel" id="CountryLabel" for="Country"> Country <input id="Country" name="Country" value="<%= obj.JsonData[i].senderAddress.country%>" type="text" /> </label>
+                </div>
+                <div style="color: #7C5DFA; margin-top: 50px;">Bill To</div>
+                <label class="clsForLabel" id="ClientNameLabel" for="ClientName">Client’s Name <input name="ClientName" value="<%= obj.JsonData[i].clientName%>" id="ClientName" type="text" /> </label>
+                <label class="clsForLabel" id="ClientEmailLabel" for="ClientEmail">Client’s Email <input name="ClientEmail" value="<%= obj.JsonData[i].clientEmail%>"  id="ClientEmail" type="text" /> </label>
+                <label class="clsForLabel" id="ClientStreedAddressLabel" for="ClientStreetAddress">Street Address <input name="ClientStreetAddress" value="<%= obj.JsonData[i].clientAddress.street%>" id="ClientStreetAddress" type="text" /> </label>
+                <div style="width: 100%; display: flex; flex-direction: row; justify-content: space-evenly; align-items: center;">
+                    <label class="clsForLabel" id="ClientCityLabel" for="ClientCity"> City <input id="ClientCity" name="ClientCity" value="<%= obj.JsonData[i].clientAddress.city%>" type="text" /> </label>
+                    <label class="clsForLabel" id="ClientPostCodeLabel" for="ClientPostCode"> Post Code <input id="ClientPostCode" name="ClientPostCode" value="<%= obj.JsonData[i].clientAddress.postCode%>" type="text" /> </label>
+                    <label class="clsForLabel" id="ClientCountryLabel" for="ClientCountry"> Country <input id="ClientCountry" name="ClientCountry" value="<%= obj.JsonData[i].clientAddress.country%>" type="text" /> </label>
+                </div>
+                <div style="width: 100%; display: flex; flex-direction: row; justify-content: flex-start; align-items: center;">
+                    <label class="clsForLabel" id="InvoiceDateLabel" for="InvoiceDate"> Invoice Date <input id="InvoiceDate" name="InvoiceDate" value="<%= obj.JsonData[i].createdAt%>" type="date" /> </label>
+                    <label class="clsForLabel" id="PaymentTermsLabel" for="PaymentTerms"> Payment Terms <input id="PaymentTerms" name="PaymentTerms" value="<%= obj.JsonData[i].paymentDue%>" type="date" /> </label>
+                </div>
+                <label class="clsForLabel" id="ProjectDescriptionLabel" for="ProjectDescription">Project Description<input name="ProjectDescription" value="<%= obj.JsonData[i].description%>" id="ProjectDescription" type="text" /></label>
+                <div style="color: #777F98; margin-top: 50px; font-size: 25px;">Item List</div>
+                <div id="itemTitle"><div id="item-name">Item Name</div><div id="item-quantity">QTY.</div><div id="item-quantity-price">Price</div> <div id="item-total-price">Total</div></div>
+                <div id="itemListDiv">
+                    <% for(let k=0 ; k<obj.JsonData[i].items.length ; k++) { %>
+                        <div class="itemDiv"> <input type="text" name="ItemName" value="<%= obj.JsonData[i].items[k].name%>"  class="clsForItemName"><input type="number" name="ItemQTY" value="<%= obj.JsonData[i].items[k].quantity%>" class="clsForItemQTY" oninput="changeItemTotalPrice(this)"><input type="number" value="<%= obj.JsonData[i].items[k].price%>" name="ItemPrice" oninput="changeItemTotalPrice(this)" class="clsForItemPrice"><div class="clsForItemTotalPrice" ><%= Number(obj.JsonData[i].items[k].total).toFixed(2)%></div><button class="clsForDeleteItemButton" onclick="deleteItem(this)"><svg  width="13" height="16" xmlns="http://www.w3.org/2000/svg"><path id="deleteItemButton" d="M11.583 3.556v10.666c0 .982-.795 1.778-1.777 1.778H2.694a1.777 1.777 0 01-1.777-1.778V3.556h10.666zM8.473 0l.888.889h3.111v1.778H.028V.889h3.11L4.029 0h4.444z" fill="#888EB0" fill-rule="nonzero"/></svg></button></div>
+                    <% } %>    
+                </div>
+                <button onclick="addNewItem()" id="addNewItemButton">+ Add New Item</button>
+                </div>
+                <div id="saveDiv"><div id="messageDivForIncorrectValue"> <div id="messageBox">please enter correct date</div><button onclick="closeMessageBox()" id="closeButton">Close</button> </div> <button class="clsForInvoiceDiv" onclick="cancelChanges()" id="draftButton">Cancel</button><button class="clsForInvoiceDiv" id="saveButton" onclick="changeInvoice()">Save Changes</button> </div>    
+            </div> </div>
+    <div id="main-div">  
+        <div id="main-div1"> <button onclick="previousPage()" id="go-back"> <i class="fa-solid fa-angle-left"></i> &nbsp; Go Back </button> </div> 
+        <div id="main-div2">
+            <div id="status-div">Status 
+                <% if(obj.JsonData[i].status=="paid") { %> 
+                    <div id="statusID" class="status statusPaid">• Paid</div>    
+                    <% } %>
+                    <% if(obj.JsonData[i].status=="pending") { %> 
+                        <div id="statusID" class="status statusPending">• Pending</div>    
+                    <% } %>
+                    <% if(obj.JsonData[i].status=="draft") { %> 
+                        <div id="statusID" class="status statusDraft">• Draft</div>    
+                    <% } %>
+            </div>
+            <div id="option-div">
+                <button class="opt-button" id="edit-button" onclick="editCurrentInvoice()">edit</button>
+                <button class="opt-button" id="delete-button" onclick="showRemoveBox('<%= obj.JsonData[i].id %>')">Delete</button>
+                <button data-id="<%= obj.JsonData[i].id %>" class="opt-button" id="paid-button" method="post" onclick="markAsPaid(this)">Mark as Paid</button>
+            </div>
+        </div>
+        <div id="main-div3">
+            <div id="sub-div1">
+                <div id="child-div1"> <h3 style="color: 888EB0;">#<customerId><%= obj.JsonData[i].id %></customerId> </h3><customerDescription><%= obj.JsonData[i].description %></customerDescription> </div>
+                <div id="child-div2">
+                    <street><%= obj.JsonData[i].senderAddress.street %></street>
+                    <city><%= obj.JsonData[i].senderAddress.city %></city>
+                    <postalCode><%= obj.JsonData[i].senderAddress.postCode %></postalCode>
+                    <country><%= obj.JsonData[i].senderAddress.country %></country>
+                </div>
+            </div>
+            <div id="sub-div2">
+                <div id="child-div3">
+                    <div id="invoiceDataDiv">Invoice Date  <invoiceDate> <% let invoicedate = new Date(obj.JsonData[i].createdAt);
+                        let newDateString =invoicedate.toLocaleDateString("en-US", { day: 'numeric', month: 'short', year: 'numeric' })%> <%= newDateString %>   </invoiceDate> 
+                    </div>
+                    <div id="paymentDateDiv">Payment Date  <paymentDate><% let paymentdate = new Date(obj.JsonData[i].paymentDue);
+                        let newDateStrings =paymentdate.toLocaleDateString("en-US", { day: 'numeric', month: 'short', year: 'numeric' })%> <%= newDateStrings %></paymentDate> </div>
+                </div>
+                <div id="child-div4">Bill To
+                    <clientName> <%= obj.JsonData[i].clientName %> </clientName>
+                    <clientAddress>
+                    <clientStreet><%= obj.JsonData[i].clientAddress.street %></clientStreet>
+                    <clientCity><%= obj.JsonData[i].clientAddress.city %></clientCity>
+                    <clientPostCode><%= obj.JsonData[i].clientAddress.postCode %></clientPostCode>
+                    <clientCountry><%= obj.JsonData[i].clientAddress.country %></clientCountry>
+                    </clientAddress>
+                </div>
+                <div id="child-div5">
+                    Sent To
+                    <clientMail><%= obj.JsonData[i].clientEmail %></clientMail>
+                </div>
+            </div>
+            <div id="sub-div3">
+                <div id="child-div6">
+                    <div id="item-list">
+                        <div id="MainitemTitle"><div id="item-name">Item Name</div><div id="item-quantity">QTY.</div><div id="item-quantity-price">Price</div> <div id="item-total-price">Total</div> </div>
+                        <% for(let j = 0; j < obj.JsonData[i].items.length; j++) { %>
+                            <div id="CusitemTitle"><div id="Cusitem-name"> <%= obj.JsonData[i].items[j].name %> </div><div id="Cusitem-quantity"> <%= obj.JsonData[i].items[j].quantity %> </div><div id="Cusitem-quantity-price"> £ <%= obj.JsonData[i].items[j].price %> </div> <div id="Cusitem-total-price"> £ <%= obj.JsonData[i].items[j].total %> </div> </div>
+                        <% } %>    
+                    </div>
+
+                    <div id="item-Totalprice">Amount Due  <div id="totalAmount-div">£ <%= obj.JsonData[i].total %></div></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <% } %>
+        <% } %>
+</div>
+
+<script src="<%= obj.js %>">
+   
+</script>
+
